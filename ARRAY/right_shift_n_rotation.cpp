@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-/*****KEEP IN MIND ARRAY SHOULD BE SORTED****/
+
 // **NOTE:-Here size of array cannot exceed 20 by any mean
 class array
 {
@@ -10,7 +10,8 @@ public:
     int length;
     void create();
     void display();
-    int search(int key);
+    void right_shift();
+    void right_rotation();
 };
 
 void array::create()
@@ -30,37 +31,29 @@ void array::display()
     cout<<endl;
 }
 
-int array::search(int key)
+void array::right_shift()
 {
-    int l,mid,h;
-    l=0;
-    h=length-1;
-    while(l<=h)
-    {
-        mid=(l+h)/2;
-        if(key==A[mid])
-            return mid;
-        else if(key>A[mid])
-            l=mid+1;
-        else if(key<mid)
-            h=mid-1;
-    }
-    return -1;
+    for(int i=length-1;i>0;i--)
+        A[i]=A[i-1];
+    A[0]=0;
 }
 
+void array::right_rotation()
+{
+    int temp=A[length-1];
+    for(int i=length-1;i>0;i--)
+        A[i]=A[i-1];
+    A[0]=temp;
+}
 int main()
 {
     array arr;
     arr.create();
     arr.display();
-    int key;
-    cout<<"Enter the element you wants to search ";
-    cin>>key;
-    if(arr.search(key)!=-1)
-        cout<<"Element found at index number "<<arr.search(key)<<endl;
-    else
-        cout<<"Element not found"<<endl;
+    arr.right_rotation();
+    arr.display();
+    arr.right_shift();
+    arr.display();
 }
-
 
 

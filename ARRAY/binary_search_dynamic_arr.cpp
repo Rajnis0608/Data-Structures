@@ -1,20 +1,26 @@
 #include<iostream>
 using namespace std;
 /*****KEEP IN MIND ARRAY SHOULD BE SORTED****/
-// **NOTE:-Here size of array cannot exceed 20 by any mean
 class array
 {
 public:
-    int A[20];
-    int size=20;
+    int *A;
+    int size;
     int length;
     void create();
     void display();
     int search(int key);
+    ~array()
+    {
+        delete A;
+    }
 };
 
 void array::create()
 {
+    cout<<"Enter size of array : ";
+    cin>>size;
+    A=new int[size];
     cout<<"Enter number of elements : ";
     cin>>length;
     cout<<"Enter all the elements : ";
@@ -32,6 +38,7 @@ void array::display()
 
 int array::search(int key)
 {
+    //binary search
     int l,mid,h;
     l=0;
     h=length-1;
@@ -61,6 +68,3 @@ int main()
     else
         cout<<"Element not found"<<endl;
 }
-
-
-

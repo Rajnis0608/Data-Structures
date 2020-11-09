@@ -10,7 +10,7 @@ public:
     int length;
     void create();
     void display();
-    int search(int key);
+    int search(int,int,int);
 };
 
 void array::create()
@@ -30,20 +30,18 @@ void array::display()
     cout<<endl;
 }
 
-int array::search(int key)
+int array::search(int l,int h,int key)
 {
-    int l,mid,h;
-    l=0;
-    h=length-1;
-    while(l<=h)
+    int mid;
+    if(l<=h)
     {
         mid=(l+h)/2;
         if(key==A[mid])
             return mid;
         else if(key>A[mid])
-            l=mid+1;
-        else if(key<mid)
-            h=mid-1;
+            return search(mid+1,h,key);
+        else if(key<A[mid])
+            return search(l,mid-1,key);
     }
     return -1;
 }
@@ -56,8 +54,8 @@ int main()
     int key;
     cout<<"Enter the element you wants to search ";
     cin>>key;
-    if(arr.search(key)!=-1)
-        cout<<"Element found at index number "<<arr.search(key)<<endl;
+    if(arr.search(0,arr.length-1,key)!=-1)
+        cout<<"Element found at index number "<<arr.search(0,arr.length-1,key)<<endl;
     else
         cout<<"Element not found"<<endl;
 }

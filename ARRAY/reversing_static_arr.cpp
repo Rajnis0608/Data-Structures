@@ -1,6 +1,7 @@
+
 #include<iostream>
 using namespace std;
-/*****KEEP IN MIND ARRAY SHOULD BE SORTED****/
+
 // **NOTE:-Here size of array cannot exceed 20 by any mean
 class array
 {
@@ -10,7 +11,8 @@ public:
     int length;
     void create();
     void display();
-    int search(int key);
+    void reversing();
+    void Reversing();
 };
 
 void array::create()
@@ -30,22 +32,25 @@ void array::display()
     cout<<endl;
 }
 
-int array::search(int key)
+void array::reversing()
 {
-    int l,mid,h;
-    l=0;
-    h=length-1;
-    while(l<=h)
-    {
-        mid=(l+h)/2;
-        if(key==A[mid])
-            return mid;
-        else if(key>A[mid])
-            l=mid+1;
-        else if(key<mid)
-            h=mid-1;
-    }
-    return -1;
+    int AA[20];
+    int i=length-1,j=0;
+    for(;i>=0;i--)
+        AA[j]=A[i];
+    for(int i=0;i<length;i++)
+        A[i]=AA[i];
+}
+
+void array::Reversing()
+{
+   int i=0,j=length-1;
+   for(;i<j;i++,j--)
+   {
+       int temp=A[i];
+       A[i]=A[j];
+       A[j]=temp;
+   }
 }
 
 int main()
@@ -53,14 +58,10 @@ int main()
     array arr;
     arr.create();
     arr.display();
-    int key;
-    cout<<"Enter the element you wants to search ";
-    cin>>key;
-    if(arr.search(key)!=-1)
-        cout<<"Element found at index number "<<arr.search(key)<<endl;
-    else
-        cout<<"Element not found"<<endl;
+    arr.reversing();
+    arr.display();
+    arr.Reversing();
+    arr.display();
 }
-
 
 
