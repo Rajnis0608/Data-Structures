@@ -13,7 +13,7 @@ public class Main {
         stack.display();
         stack.pop();
         stack.display();
-        stack.peek(2);
-        stack.stackTop();
+        stack.peep(2);
+        stack.peek();
     }
 }

@@ -47,7 +47,7 @@ public class Stack {
         }
     }
 
-    int peek(int index) {
+    int peep(int index) {
         if(isEmpty()) {
             System.out.println("Stack underflow.");
             return 0;
@@ -61,7 +61,7 @@ public class Stack {
         }
     }
 
-    int stackTop () {
+    int peek () {
         if(isEmpty()) {
             System.out.println("Stack underflow.");
             return 0;
