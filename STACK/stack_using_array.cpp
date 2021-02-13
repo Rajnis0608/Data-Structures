@@ -14,9 +14,9 @@ public:
     bool isEmpty();
     bool isFull();
     bool push(int x);
-    int peek(int index);
+    int peep(int index);
     int pop();
-    int stackTop();
+    int peek();
     void display();
 };
 
@@ -49,7 +49,7 @@ bool Stack :: push(int x) {
     }
 }
 
-int Stack :: peek(int index) {
+int Stack :: peep(int index) {
     if(isEmpty()) {
         cout<<"Stack overflow."<<endl;
             return 0;
@@ -75,7 +75,7 @@ int Stack :: pop() {
     }
 }
 
-int Stack :: stackTop() {
+int Stack :: peek() {
     if(isEmpty()) {
         cout<<"Stack underflow."<<endl;
         return 0;
@@ -103,7 +103,7 @@ int main() {
         sstack.display();
         sstack.pop();
         sstack.display();
-        sstack.peek(2);
-        sstack.stackTop();
+        sstack.peep(2);
+        sstack.peek();
 
 }
