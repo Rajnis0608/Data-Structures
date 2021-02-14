@@ -96,22 +96,49 @@ void Stack :: display(){
 bool isBalanced(char *exp){
     Stack s;
     for(int i=0;exp[i]!='\0';i++) {
-        if(exp[i]=='('){
+        if(exp[i]=='(' || exp[i] == '{' || exp[i] == '['){
             s.push(exp[i]);
            }
         else if(exp[i]==')') {
             if(s.isEmpty()){
                 return false;
             }
-            s.pop();
+            else if(s.peek() == '(') {
+                s.pop();
+            }
+            else {
+                return false;
+            }
+        }
+        else if(exp[i]==']') {
+            if(s.isEmpty()){
+                return false;
+            }
+            else if(s.peek() == '[') {
+                s.pop();
+            }
+            else {
+                return false;
+            }
+        }
+        else if(exp[i]=='}') {
+            if(s.isEmpty()){
+                return false;
+            }
+            else if(s.peek() == '{') {
+                s.pop();
+            }
+            else {
+                return false;
+            }
         }
     }
     return s.isEmpty();
 }
 
 int main() {
-    char *exp = "((a+b))*(c-d))";
-    char *exp2 = "((a+b)*(c-d))";
+    char *exp = "{(9+2)*[4]+(7+3)}";
+    char *exp2 = "{(9+2]*[4]+(7+3)}";
     if(isBalanced(exp)){
         cout<<"Parenthesis matches successfully."<<endl;
     }

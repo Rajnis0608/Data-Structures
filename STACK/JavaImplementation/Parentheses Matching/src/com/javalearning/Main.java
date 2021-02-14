@@ -21,20 +21,10 @@ public class Main {
     }
 
     public static void main(String[] args) {
-//        GenericsStack<Character> stack = new GenericsStack<Character>();
-//        stack.pop();
-//        stack.push('A');
-//        stack.display();
-//        stack.push('B');
-//        stack.display();
-//        stack.push('C');
-//        stack.display();
-//        stack.pop();
-//        stack.display();
-//        stack.peep(2);
-//        stack.peek();
-
         String expression = "(9+2))+(7+3)";
+        String expression2 = "((9+2)*(7+3))";
         System.out.println(isBalance(expression));
+        System.out.println();
+        System.out.println(isBalance(expression2));
     }
 }
