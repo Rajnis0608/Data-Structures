@@ -2,9 +2,9 @@
 using namespace std;
 
 class Queue {
-    //max size of Queue can be 20
+    //max size of Queue can be 4
 private:
-    int Q[20];
+    int Q[5];
     int front;
     int rear;
 public:
@@ -19,8 +19,8 @@ public:
 };
 
 Queue :: Queue() {
-    front = -1;
-    rear = -1;
+    front = 0;
+    rear = 0;
 }
 
 bool Queue :: isEmpty() {
@@ -32,7 +32,7 @@ bool Queue :: isEmpty() {
 }
 
 bool Queue :: isFull() {
-    if(rear == 19 ){
+    if((rear+1)%5 == front ){
         cout<<"Queue is full."<<endl;
         return true;
     }
@@ -43,7 +43,7 @@ bool Queue :: enqueue(int x) {
     if(isFull()){
         return false;
     }
-    rear++;
+    rear = (rear+1)%5;
     Q[rear] = x;
     cout<<x<<" is added to queue"<<endl;
     return true;
@@ -53,7 +53,7 @@ int Queue :: dequeue() {
     if(isEmpty()) {
         return 0;
     }
-    front++;
+    front = (front+1)%5;
     cout<<Q[front]<<" removed from queue."<<endl;
     return Q[front];
 }
@@ -69,24 +69,26 @@ int Queue :: last() {
 }
 
 void Queue :: display() {
-    for(int i = front+1;i<=rear;i++) {
-        cout<<Q[i]<<" ";
-    }
+    int i = front;
+    do{
+        cout<<Q[i+1]<<" ";
+        i = (i+1)%5;
+    } while(i != rear);
     cout<<endl;
 }
-
 
 int main() {
     Queue q;
     q.dequeue();
-    q.enqueue(2);
     q.enqueue(3);
-    q.enqueue(4);
-    q.dequeue();
+    q.enqueue(5);
+    q.enqueue(7);
+    q.enqueue(9);
     q.display();
+    q.dequeue();
+    q.enqueue(1);
+    q.display();
+    q.enqueue(8);
     q.first();
     q.last();
-    q.enqueue(8);
-    q.display();
 }
-
