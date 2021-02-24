@@ -1,3 +1,4 @@
+
 #include<iostream>
 #include <bits/stdc++.h>
 using namespace std;
@@ -24,16 +25,20 @@ public:
 
     void push(int x) {
         if(!isFull()) {
-            if(x<min)
+            if(x<=min){
                 min = x;
-            minStack.push(min);
+                minStack.push(min);
+            }
             st.push(x);
         }
     }
 
     void pop(){
+        int x;
         if(!isEmpty()){
-            st.pop();
+        x=st.top();
+        st.pop();
+        if(x == minStack.top())
             minStack.pop();
         }
     }
@@ -45,9 +50,12 @@ public:
 };
 int main() {
         Stack sstack;
-        sstack.push(1);
-        sstack.push(0);
-        sstack.push(1);
+        sstack.push(6);
+        sstack.push(9);
+        sstack.push(8);
+        sstack.push(5);
+        sstack.push(6);
+        sstack.push(5);
         cout<<sstack.getMin()<<endl;
         sstack.pop();
         cout<<sstack.getMin()<<endl;
@@ -55,3 +63,4 @@ int main() {
         cout<<sstack.getMin()<<endl;
 
 }
+
