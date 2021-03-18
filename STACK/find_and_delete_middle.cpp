@@ -39,7 +39,8 @@ bool Stack :: push(int x) {
     temp->data = x;
     temp->next = top;
     temp->previous = NULL;
-    top->previous = temp;
+    if(top!=NULL)
+        top->previous = temp;
     top = temp;
     cout<<x<<" pushed"<<endl;
     if(count == 1) {
@@ -70,7 +71,7 @@ int Stack :: pop() {
 }
 
 int Stack ::findMiddle() {
-    cout<<middle->data<<" is mid of stack"<<endl;
+    cout<<(middle->data)<<" is mid of stack"<<endl;
     return middle->data;
 }
 
@@ -96,6 +97,7 @@ int Stack :: deleteMiddle() {
 int main() {
     Stack s;
     s.push(3);
+    s.findMiddle();
     s.push(4);
     s.findMiddle();
     s.push(5);
