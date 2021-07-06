@@ -1,6 +1,17 @@
 #include<iostream>
 #include <bits/stdc++.h>
+
 using namespace std;
+
+int main()
+{
+    int a = 7;
+    int *p = &a;
+    cout<<p;
+
+}
+
+/*using namespace std;
 
 class Queue {
     //max size of Queue can be 20
@@ -45,4 +56,4 @@ int main(){
     q1.enqueue(68);
     q1.dequeue();
 }
-
+*/

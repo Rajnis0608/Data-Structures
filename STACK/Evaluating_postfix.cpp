@@ -101,41 +101,39 @@ bool isOperand(char x){
 
 }
 
-int evaluate(char *postfix) {
-    Stack s;
-    for(int i=0;postfix[i] != '\0' ; i++) {
-        if(isOperand(postfix[i])) {
-            s.push(postfix[i]-'0 ');
-        }
-        else {
-            int x1,x2,res;
-            x2 = s.pop();
-            x1 = s.pop();
-            switch(postfix[i]) {
-            case '+':
-                res = x1 + x2;
-                s.push(res);
-                break;
-            case '-':
-                res = x1 - x2;
-                s.push(res);
-                break;
-            case '*':
-                res = x1 * x2;
-                s.push(res);
-                break;
-            case '/':
-                res = x1 / x2;
-                s.push(res);
-                break;
-            case '^':
-                res = pow(x1,x2);
-                s.push(res);
-                break;
+int evaluatePostfix(char* exp)
+{
+    // Create a stack of capacity equal to expression size
+    Stack* stack = createStack(strlen(exp));
+    int i;
+
+    // See if stack was created successfully
+    if (!stack) return -1;
+
+    // Scan all characters one by one
+    for (i = 0; exp[i]; ++i)
+    {
+        // If the scanned character is an operand (number here),
+        // push it to the stack.
+        if (isdigit(exp[i]))
+            push(stack, exp[i] - '0');
+
+        // If the scanned character is an operator, pop two
+        // elements from stack apply the operator
+        else
+        {
+            int val1 = pop(stack);
+            int val2 = pop(stack);
+            switch (exp[i])
+            {
+            case '+': push(stack, val2 + val1); break;
+            case '-': push(stack, val2 - val1); break;
+            case '*': push(stack, val2 * val1); break;
+            case '/': push(stack, val2/val1); break;
             }
         }
     }
-    return s.pop();
+    return pop(stack);
 }
 
 int main() {

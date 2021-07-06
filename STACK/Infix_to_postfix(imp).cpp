@@ -153,6 +153,6 @@ char* toPostfix(char *infix){
 }
 
 int main() {
-    char *exp = "((a+b)*c)-d^e^f";
+    char *exp = "(A * B - (C - D)) / (E + F)";
     cout<<toPostfix(exp);
 }
